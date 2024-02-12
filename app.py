@@ -1,12 +1,11 @@
-# pip install streamlit langchain lanchain-openai beautifulsoup4 python-dotenv chromadb
+
 import os
 import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_community.document_loaders import WebBaseLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain_community.vectorstores import FAISS
-# from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+
 
 from langchain_google_genai import GoogleGenerativeAIEmbeddings,ChatGoogleGenerativeAI
 import google.generativeai as genai
@@ -30,9 +29,8 @@ def get_vectorstore_from_url(url):
     
     # embeddings=GoogleGenerativeAIEmbeddings(model="models/embeddings-001")
     # create a vectorstore from the chunks
-    # vector_store = Chroma.from_documents(document_chunks,GoogleGenerativeAIEmbeddings(model="models/embedding-001"))
-    vector_store = FAISS.from_documents(document_chunks,GoogleGenerativeAIEmbeddings(model="models/embeddings-001"))
-
+    vector_store = Chroma.from_documtns(document_chunks,GoogleGenerativeAIEmbeddings(model="models/embedding-001"))
+    
     return vector_store
 
 def get_context_retriever_chain(vector_store):
